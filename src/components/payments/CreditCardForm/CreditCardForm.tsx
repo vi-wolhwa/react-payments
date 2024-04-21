@@ -5,28 +5,21 @@ import {
   PreviewCreditCard,
 } from '@components/payments';
 
-import { PreviewCreditCardStyleContainer, TextFieldStyleContainer } from '@components/layout';
+import { useChangeCardNumber, useChangeExpirationDate, useChangeOwnerName } from '@hooks/creditCard';
 
-import { useChangeCardNumber, useChangeExpiration, useChangeOwnerName } from '@hooks/creditCard';
-import { initialExpiration } from '@hooks/creditCard/useChangeExpiration';
+import styles from './CreditCardForm.module.css';
 
 const CreditCardForm: React.FC = () => {
   const { cardNumbers, cardNumberError, handleCardNumberChange } = useChangeCardNumber();
-
-  const { expiration, expirationError, handleExpirationChange } = useChangeExpiration();
-
+  const { expiration, expirationError, handleExpirationChange } = useChangeExpirationDate();
   const { ownerName, ownerNameError, handleOwnerNameChange } = useChangeOwnerName();
 
   return (
     <>
-      <PreviewCreditCardStyleContainer>
-        <PreviewCreditCard
-          cardNumbers={cardNumbers}
-          expiration={expirationError.isError === true ? initialExpiration : expiration}
-          ownerName={ownerName}
-        />
-      </PreviewCreditCardStyleContainer>
-      <TextFieldStyleContainer>
+      <div className={styles.previewCreditCardContainer}>
+        <PreviewCreditCard cardNumbers={cardNumbers} expiration={expiration} ownerName={ownerName} />
+      </div>
+      <div className={styles.textFieldContainer}>
         <CardNumberTextField
           cardNumbers={cardNumbers}
           onAddCardNumber={handleCardNumberChange}
@@ -36,14 +29,14 @@ const CreditCardForm: React.FC = () => {
           month={expiration.month}
           year={expiration.year}
           onAddExpirationDate={handleExpirationChange}
-          expirationError={expirationError}
+          expirationDateError={expirationError}
         />
         <OwnerNameTextField
           ownerName={ownerName}
           onAddOwnerName={handleOwnerNameChange}
           ownerNameError={ownerNameError}
         />
-      </TextFieldStyleContainer>
+      </div>
     </>
   );
 };
