@@ -1,0 +1,1 @@
+const t=e=>{switch(e.control){case"color":return{control:{type:e.control,presetColors:e.presetColors}};case"number":return{control:{type:e.control,min:e.min,max:e.max,step:e.step}};case"range":return{control:{type:e.control,min:e.min,max:e.max,step:e.step}};case"file":return{control:{type:e.control,accept:e.accept}};default:return e}};export{t as g};
