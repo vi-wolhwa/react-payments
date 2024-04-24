@@ -8,8 +8,8 @@ function App() {
   return (
     <div className={styles.app}>
       <Routes>
-        <Route path="/" element={<Payments />} />
-        <Route path="/submit" element={<Submit />} />
+        <Route path="/react-payments/dist/" element={<Payments />} />
+        <Route path="/react-payments/dist/submit" element={<Submit />} />
       </Routes>
     </div>
   );
