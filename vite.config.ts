@@ -4,7 +4,7 @@ import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './react-payments/dist/',
+  base: '/react-payments/dist/',
   plugins: [react()],
   resolve: {
     alias: [
